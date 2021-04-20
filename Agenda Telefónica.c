@@ -1,3 +1,8 @@
+/*
+	Auto: Enrique Emmanuel Rios Chyrnia
+	Youtube: Enrique Rios
+*/
+
 #include <stdio.h>
 #include <conio.h>
 #include <stdlib.h>
@@ -21,7 +26,8 @@ typedef struct {
 	int cap;
 	int tamActual;
 } Agenda;
-
+//Crea la agenda con la longitud dada.
+//Usa malloc
  Agenda* crearAgenda(int longitud) {
 	 Agenda* agenda = (Agenda*)malloc(sizeof(Agenda));
 	if (NULL == agenda) return NULL;
@@ -34,7 +40,7 @@ typedef struct {
 	agenda->tamActual = 0;
 	return agenda;
 }
-
+ //Agregar un objeto usuario a la Agenda.
 int agregar(Agenda* agenda, Usuario valor) {
 	if (NULL == agenda)return 0;
 
@@ -57,14 +63,20 @@ int* buscar(Agenda* agenda, char* nombre) {
 
 	return FALSE;
 }
-
+//Funcion que da comienzo al codigo.
 void start() {
 	int respuesta = 0;
-	char basura;
+	char basura; //Elimina el enter y tambien define tamaño de lista.
 	char texto[30];
 	Usuario persona;
 	Usuario* pPersona;
-	Agenda* agenda = crearAgenda(3);
+	
+	
+	printf("\n*** Introduzca el tamaño de la agenda ** \n -->");
+	scanf_s("%i", &respuesta);
+	scanf_s("%c", &basura); 
+
+	Agenda* agenda = crearAgenda(basura);
 
 
 	while (respuesta != 3) {
@@ -86,6 +98,7 @@ void start() {
 			gets(texto);
 			strcpy(persona.nombre, texto, texto);
 			printf("\n******* INTRODUZCA EL TELEFONO ********\n");
+			printf("\n----> ");
 			gets(texto);
 			strcpy(persona.numero, texto, texto);
 			agregar(agenda, persona);
@@ -100,9 +113,10 @@ void start() {
 				printf("\n********* No encontrado ************\n");
 				break;
 			}
+			printf("\n");
 			printf("\n*************  Resultado  *************\n");
 			printf("Nombre: %s Telefono: %s", pPersona->nombre, pPersona->numero);
-
+			printf("\n");
 			break;
 		case 3:
 			exit(0);
